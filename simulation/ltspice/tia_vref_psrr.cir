@@ -1,0 +1,29 @@
+* Supply-to-ADC AC transfer (rail/reference ripple rejection). Same VREF
+* divider+buffer topology as tia_vref_startup.cir. VCC carries DC 3.3V plus
+* a 1V AC perturbation (ripple injection); Iphoto AC=0 (dark, optical path
+* not excited) so the reported |V(adc)/V(vcc)| and |V(tia)/V(vcc)| are the
+* small-signal supply-ripple-to-output transfer functions. Representative
+* mid gain (100k/100pF), CT=80p nominal.
+.include ../models/OPAx320.lib
+VCC vcc 0 DC 3.3 AC 1
+Rdiv1 vcc dmid 10k
+Rdiv2 dmid 0 10k
+XREFBUF dmid ref vcc 0 ref OPAx320
+Cmid1 dmid 0 10u
+Cmid2 dmid 0 100n
+Iphoto vcc sum DC 2n AC 0
+Cdiode sum vcc 71p
+XU ref sum vcc 0 tia OPAx320
+RF sum tia 100k
+CF sum tia 100p
+R1 tia f1 3.3k
+C1 f1 0 100n
+X1 f1 b1 vcc 0 b1 OPAx320
+R2 b1 f2 3.3k
+C2 f2 0 100n
+X2 f2 b2 vcc 0 b2 OPAx320
+RADC b2 adc 1k
+CADC adc 0 10n
+.ac dec 100 0.1 1Meg
+.save V(vcc) V(ref) V(tia) V(adc)
+.end

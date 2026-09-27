@@ -1,0 +1,25 @@
+* Simple tracked behavioral op-amp macromodel for GBW-sensitivity studies.
+* Pin order matches OPAx320.lib for drop-in substitution: IN+ IN- VCC VEE OUT
+* Model: single differential input with input capacitance CIN (split IN+/IN-
+* to ground, approximating the vendor part's common-mode input caps), a
+* two-pole open-loop gain block (dominant pole set by GBW/A0, a non-dominant
+* pole at P2MULT*GBW to give a finite/realistic phase margin at crossover),
+* and a linear output (AC small-signal use only; no rail clamp). No noise, no CMRR/
+* PSRR, no slew-rate limiting, no output impedance -- intentionally minimal,
+* used only to sweep GBW (10/20/30 MHz) for closed-loop stability trends and
+* cross-checked against the vendor model at 20 MHz. Document as a modeling
+* limitation in the report.
+.SUBCKT OPAMP_BEH INP INM VCC VEE OUT PARAMS: GBW=20MEG A0=100K P2MULT=4 CIN=9P
+* Input capacitance to ground (AC-equivalent to the vendor model's 9 pF total
+* input capacitance already assumed elsewhere in the testbenches).
+Cinp INP 0 {CIN/2}
+Cinm INM 0 {CIN/2}
+* Two-pole open-loop voltage gain block, Laplace transfer from (INP-INM) to
+* an internal unclamped output node.
+Eol OL 0 INP INM Laplace=A0/((1+s/(2*pi*(GBW/A0)))*(1+s/(2*pi*(P2MULT*GBW))))
+Rol OL 0 1
+* Linear unity output buffer. No rail clamp: an IF()-based clamp prevented
+* LTspice .op convergence, and this model is used for small-signal AC GBW
+* sensitivity only. Saturation behavior comes from the vendor model.
+Eout OUT 0 OL 0 1
+.ENDS OPAMP_BEH

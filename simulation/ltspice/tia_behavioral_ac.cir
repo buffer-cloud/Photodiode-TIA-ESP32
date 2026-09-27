@@ -1,0 +1,37 @@
+* GBW sensitivity study using the tracked behavioral op-amp macromodel
+* (simulation/models/opamp_behavioral.sub) instead of the vendor OPAx320
+* model. Nested .step over:
+*   gi   = 1..3  gain range
+*   cfi  = 1..2  1 = 1x SELECTED CF, 2 = 1x ANALYTICAL-MINIMUM CF
+*   gbwi = 1..3  GBW = 10/20/30 MHz
+* CT fixed at the nominal 80 pF corner. The gbwi=2 (20 MHz), cfi=1 case is
+* the direct cross-check point against the vendor-model tia_ac.cir result
+* at CT=80p, cfi=5 (1x selected CF).
+.include ../models/opamp_behavioral.sub
+.step param gi 1 3 1
+.step param cfi 1 2 1
+.step param gbwi 1 3 1
+.param RF={table(gi,1,10k,2,100k,3,1Meg)}
+.param CFmin={table(gi,1,8p,2,2.5p,3,0.8p)}
+.param CFsel={table(gi,1,1n,2,100p,3,10p)}
+.param CF={table(cfi,1,CFsel,2,CFmin)}
+.param CT=80p
+.param GBW={table(gbwi,1,10MEG,2,20MEG,3,30MEG)}
+VCC vcc 0 3.3
+VREF ref 0 1.65
+Iphoto vcc sum DC 2n AC 1
+Cdiode sum vcc {CT-9p}
+XU ref sum vcc 0 tia OPAMP_BEH PARAMS: GBW={GBW}
+RF sum tia {RF}
+CF sum tia {CF}
+R1 tia f1 3.3k
+C1 f1 0 100n
+X1 f1 b1 vcc 0 b1 OPAMP_BEH PARAMS: GBW={GBW}
+R2 b1 f2 3.3k
+C2 f2 0 100n
+X2 f2 b2 vcc 0 b2 OPAMP_BEH PARAMS: GBW={GBW}
+RADC b2 adc 1k
+CADC adc 0 10n
+.ac dec 100 0.1 100Meg
+.save V(tia) V(adc)
+.end

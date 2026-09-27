@@ -1,0 +1,27 @@
+* Output-referred and input-referred noise density at V(adc) (after the two
+* 3.3k/100n RC-buffered filter stages and the 1k/10n ADC RC), vendor OPAx320
+* model for U1A/U2A/U2B, selected (locked) CF, CT=80p nominal. Nested .step
+* over gain only.
+.include ../models/OPAx320.lib
+.step param gi 1 3 1
+.param RF={table(gi,1,10k,2,100k,3,1Meg)}
+.param CFsel={table(gi,1,1n,2,100p,3,10p)}
+.param CT=80p
+VCC vcc 0 3.3
+VREF ref 0 1.65
+Iphoto vcc sum DC 2n AC 1
+Cdiode sum vcc {CT-9p}
+XU ref sum vcc 0 tia OPAx320
+RF sum tia {RF}
+CF sum tia {CFsel}
+R1 tia f1 3.3k
+C1 f1 0 100n
+X1 f1 b1 vcc 0 b1 OPAx320
+R2 b1 f2 3.3k
+C2 f2 0 100n
+X2 f2 b2 vcc 0 b2 OPAx320
+RADC b2 adc 1k
+CADC adc 0 10n
+.noise V(adc) Iphoto dec 100 0.1 100k
+.save all
+.end

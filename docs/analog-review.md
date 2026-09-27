@@ -15,3 +15,7 @@ Release checklist still open: verify footprints/pin numbers against exact order 
 ## Coordinator checkpoint
 
 Electrical architecture is internally consistent for the next simulation phase: diode orientation gives the required negative transimpedance, amplifier common mode includes VREF, compensation/filter values have a calculation basis, and the positive-light operating window fits the chosen ADC range. **Approved to simulate; PCB routing remains gated on the SPICE review.** This is not approval to fabricate. Powered-off ADC isolation is procedural in Rev A and must remain explicit in the connector and bring-up instructions.
+
+## Simulation gate (2026-09-27)
+
+SPICE review complete: [analog-design-gate.md](analog-design-gate.md) — **ANALOG DESIGN REVIEW: PASS**. Schematic capture and PCB layout are authorized; fabrication is not.

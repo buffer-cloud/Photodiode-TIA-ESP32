@@ -1,0 +1,22 @@
+* Output-referred and input-referred noise density at TIA_OUT, vendor
+* OPAx320 model, selected (locked) CF, CT=80p nominal. Nested .step over
+* gain only. LTspice reports V(onoise) (total output density at the
+* requested output node), inoise (input-referred, in A/rtHz since the
+* source is the current source Iphoto), and per-device contributions
+* (e.g. V(rf) = RF's contribution) enabling an RF-vs-op-amp breakdown in
+* post-processing: opamp_contribution = sqrt(onoise^2 - rf_contrib^2).
+.include ../models/OPAx320.lib
+.step param gi 1 3 1
+.param RF={table(gi,1,10k,2,100k,3,1Meg)}
+.param CFsel={table(gi,1,1n,2,100p,3,10p)}
+.param CT=80p
+VCC vcc 0 3.3
+VREF ref 0 1.65
+Iphoto vcc sum DC 2n AC 1
+Cdiode sum vcc {CT-9p}
+XU ref sum vcc 0 tia OPAx320
+RF sum tia {RF}
+CF sum tia {CFsel}
+.noise V(tia) Iphoto dec 100 0.1 100k
+.save all
+.end
