@@ -22,3 +22,10 @@ dist/
 firmware/esp32/include/secrets.h
 measurements/raw/*
 !measurements/raw/README.md
+# Exported manufacturing/build products and local runtime state
+hardware/manufacturing/generated/
+firmware/esp32/sdkconfig
+firmware/esp32/sdkconfig.old
+simulation/.work/
+software/python/sessions/
+.cache/

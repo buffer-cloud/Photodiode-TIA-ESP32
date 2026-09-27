@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Photodiode TIA telemetry batch v1",
+  "type": "object",
+  "required": ["v", "seq", "t0_us", "fs_hz", "gain_ohm", "dropped", "raw", "mv", "dt_us"],
+  "properties": {
+    "v": {"const": 1},
+    "seq": {"type": "integer", "minimum": 0},
+    "t0_us": {"type": "integer", "minimum": 0},
+    "fs_hz": {"type": "number", "minimum": 1000, "maximum": 8000},
+    "gain_ohm": {"enum": [10000, 100000, 1000000]},
+    "dropped": {"type": "integer", "minimum": 0},
+    "raw": {"type": "array", "minItems": 1, "maxItems": 256, "items": {"type": "integer", "minimum": 0, "maximum": 4095}},
+    "mv": {"type": "array", "minItems": 1, "maxItems": 256, "items": {"type": "number", "minimum": 0, "maximum": 5000}},
+    "dt_us": {"type": "array", "minItems": 1, "maxItems": 256, "items": {"type": "integer", "minimum": 0}},
+    "calibration": {"type": "string"}
+  },
+  "additionalProperties": true,
+  "$comment": "Consumer additionally checks equal array lengths, strictly increasing dt_us beginning at zero, finite numbers, gaps, reboot and timing jitter. mv represents ADC-pin voltage, not reconstructed photocurrent. Synthetic examples must be explicitly labeled outside actual measurement folders."
+}
