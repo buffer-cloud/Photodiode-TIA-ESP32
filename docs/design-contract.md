@@ -24,7 +24,8 @@ Added before implementation handoff. Fields above are unchanged.
 
 - Target bandwidth: TIA closed-loop pole 1/(2π RF CF) = 15.9 kHz in every range; system −3 dB ≈ 310 Hz set by the two 482 Hz RC poles; useful band DC–100 Hz.
 - Expected output range: TIA_OUT 1.65 V (dark) falling to 0.25 V at full-scale current 1.40/RF (140 µA / 14 µA / 1.4 µA).
-- Analog LDO: **open — selected at the analog design review gate** (low-noise 3.3 V, ≥50 mA, powered from J_ESP32 VBUS_5V). PCB work may not start until this field is locked.
+- Analog LDO: **TPS7A2033PDBVR** (SOT-23-5, 3.3 V fixed, 1 µF input and 1 µF output C0G/X7R), from J_ESP32 VBUS_5V; analog load ≈6 mA calculated. Locked 2026-09-26 per docs/analog-calculation-review.md §4. Alternates: LP5907MFX-3.3, ADP150-3.3.
+- ADC clamp diodes: BAT54S dual Schottky (series pair, common node ADC_OUT); leakage error through 1 kΩ is sub-mV calculated, characterize on bench.
 - CF sweep scope (resolves ambiguity in "CF 0.5×/1×/2×"): simulate both (a) 0.5×/1×/2× the analytical minimum-stable CF and (b) 0.5×/1×/2× the selected CF. The selected CF sets bandwidth; the analytical CF is evidence of stability margin.
 - Sampling buffer: batches of 256 samples (64 ms at 4 ksps); firmware ring buffer holds at least 8 batches; overflow increments `dropped`.
 - Firmware framework: PlatformIO, `espressif32` platform, Arduino framework, board `esp32dev`. Primary acquisition is timer-driven (hardware timer or ADC continuous/DMA), never `delay()` paced. Wi-Fi credentials are in `firmware/esp32/include/secrets.h` (gitignored) with a committed `secrets.example.h`.
