@@ -29,3 +29,7 @@ firmware/esp32/sdkconfig.old
 simulation/.work/
 software/python/sessions/
 .cache/
+# Vendor simulation models are fetched locally, not redistributed
+simulation/models/*.lib
+simulation/models/*.LIB
+simulation/models/*.zip
