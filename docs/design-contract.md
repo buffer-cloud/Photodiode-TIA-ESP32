@@ -14,7 +14,7 @@ All disciplines must use this file. Analog architect may revise electrical field
 - Sampling: 4000 samples/s default, configuration 1000–8000 samples/s; timer task, measured timing and lost-sample accounting; analog anti-alias response fixed and documented.
 - Network: WebSocket TCP 81, path `/`; ESP32 server and Python client.
 - Packet: JSON batch version 1, keys `v`, `seq`, `t0_us`, `fs_hz`, `gain_ohm`, `dropped`, `raw`, `mv`, `dt_us`. Arrays raw/mv/dt_us same length; dt_us actual sample offset from t0_us. Raw 12-bit counts preserved. mv is calibrated millivolts, never ideal counts-to-volts claim. t0_us monotonic boot time; seq increments for each emitted batch; dropped cumulative acquisition/queue losses.
-- Test points: TP_3V3A, TP_VREF, TP_TIA, TP_FILTER, TP_ADC, TP_GND.
+- Test points: TP_3V3A, TP_VREF, TP_TIA, TP_FILTER, TP_ADC, TP_GND (KiCad refs TP1–TP6; contract name in Value and silkscreen).
 - Naming: lowercase-hyphen documentation, snake_case Python, photodiode-tia-esp32 KiCad project; source relative paths only.
 - Evidence: calculated, model-simulated, expected and measured explicitly labeled. All measured results TBD until bench testing. Do not invent LTspice execution or ERC/DRC results.
 
@@ -30,6 +30,6 @@ Added before implementation handoff. Fields above are unchanged.
 - Sampling buffer: batches of 256 samples (64 ms at 4 ksps); firmware ring buffer holds at least 8 batches; overflow increments `dropped`.
 - Firmware framework: PlatformIO, `espressif32` platform, Arduino framework, board `esp32dev`. Primary acquisition is timer-driven (hardware timer or ADC continuous/DMA), never `delay()` paced. Wi-Fi credentials are in `firmware/esp32/include/secrets.h` (gitignored) with a committed `secrets.example.h`.
 - Calibration method: ADC 11 dB, eFuse-based Espressif calibration for `mv` as a baseline; then a DMM multi-point user calibration (DC source → TP_ADC, ≥5 points across 0.25–2.40 V) that stores a piecewise-linear correction table applied in Python (firmware reports `calibration` provenance string). Gain calibration uses measured RF plus a measured dark baseline.
-- Connectors and links: J_ESP32 1×6 2.54 mm header — 1 VBUS_5V, 2 GND, 3 3V3D (clamp rail sense from DevKit), 4 GND, 5 ADC_LINK (to GPIO34), 6 GND. JP_ADC 2-pin link between ADC_OUT and ADC_LINK. Gain links JP_G10K, JP_G100K, JP_G1M (exactly one closed). D1 BPW34 mounted on board only; no photodiode cable in Rev A.
+- Connectors and links: J_ESP32 1×6 2.54 mm header — 1 VBUS_5V, 2 GND, 3 3V3D (clamp rail sense from DevKit), 4 GND, 5 ADC_LINK (to GPIO34), 6 GND. JP_ADC 2-pin link between ADC_OUT and ADC_LINK. Gain links JP_G10K, JP_G100K, JP_G1M (exactly one closed). KiCad refs: J1=J_ESP32, JP1=JP_ADC, JP2=JP_G10K, JP3=JP_G100K, JP4=JP_G1M; contract name carried in Value and silkscreen (numeric refs are required for KiCad annotation). D1 BPW34 mounted on board only; no photodiode cable in Rev A.
 - Python stack: numpy, scipy, matplotlib, pandas, websockets; client connects to `ws://<esp32-ip>:81/`.
 - Vendor models: TI OPAx320 PSpice model is used locally in `simulation/models/` but not committed (redistribution not granted); `simulation/models/README.md` gives source and SHA-256.

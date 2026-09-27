@@ -1,0 +1,192 @@
+[
+  {
+    "ref": "C1",
+    "value": "1u X7R",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C2",
+    "value": "1u X7R",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C3",
+    "value": "1n C0G",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C4",
+    "value": "100p C0G",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C5",
+    "value": "10p C0G",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C6",
+    "value": "10u X7R",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C7",
+    "value": "100n X7R",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C8",
+    "value": "100n X7R",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C9",
+    "value": "1u X7R",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C10",
+    "value": "100n X7R",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C11",
+    "value": "1u X7R",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C12",
+    "value": "100n X7R",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C13",
+    "value": "100n X7R",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "C14",
+    "value": "10n X7R",
+    "footprint": "Capacitor_SMD:C_0603_1608Metric"
+  },
+  {
+    "ref": "D1",
+    "value": "BPW34",
+    "footprint": "Photodiode:Vishay_BPW34_THT"
+  },
+  {
+    "ref": "D2",
+    "value": "BAT54S",
+    "footprint": "Package_TO_SOT_SMD:SOT-23"
+  },
+  {
+    "ref": "J1",
+    "value": "J_ESP32",
+    "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical"
+  },
+  {
+    "ref": "JP1",
+    "value": "JP_ADC",
+    "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+  },
+  {
+    "ref": "JP2",
+    "value": "JP_G10K",
+    "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+  },
+  {
+    "ref": "JP3",
+    "value": "JP_G100K",
+    "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+  },
+  {
+    "ref": "JP4",
+    "value": "JP_G1M",
+    "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+  },
+  {
+    "ref": "R1",
+    "value": "10k 0.1%",
+    "footprint": "Resistor_SMD:R_0603_1608Metric"
+  },
+  {
+    "ref": "R2",
+    "value": "100k 0.1%",
+    "footprint": "Resistor_SMD:R_0603_1608Metric"
+  },
+  {
+    "ref": "R3",
+    "value": "1M 0.1%",
+    "footprint": "Resistor_SMD:R_0603_1608Metric"
+  },
+  {
+    "ref": "R4",
+    "value": "10k 0.1%",
+    "footprint": "Resistor_SMD:R_0603_1608Metric"
+  },
+  {
+    "ref": "R5",
+    "value": "10k 0.1%",
+    "footprint": "Resistor_SMD:R_0603_1608Metric"
+  },
+  {
+    "ref": "R6",
+    "value": "3.3k 1%",
+    "footprint": "Resistor_SMD:R_0603_1608Metric"
+  },
+  {
+    "ref": "R7",
+    "value": "3.3k 1%",
+    "footprint": "Resistor_SMD:R_0603_1608Metric"
+  },
+  {
+    "ref": "R8",
+    "value": "1k 1%",
+    "footprint": "Resistor_SMD:R_0603_1608Metric"
+  },
+  {
+    "ref": "TP1",
+    "value": "TP_3V3A",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm"
+  },
+  {
+    "ref": "TP2",
+    "value": "TP_VREF",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm"
+  },
+  {
+    "ref": "TP3",
+    "value": "TP_TIA",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm"
+  },
+  {
+    "ref": "TP4",
+    "value": "TP_FILTER",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm"
+  },
+  {
+    "ref": "TP5",
+    "value": "TP_ADC",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm"
+  },
+  {
+    "ref": "TP6",
+    "value": "TP_GND",
+    "footprint": "TestPoint:TestPoint_Pad_D1.5mm"
+  },
+  {
+    "ref": "U1",
+    "value": "OPA2320",
+    "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+  },
+  {
+    "ref": "U2",
+    "value": "OPA2320",
+    "footprint": "Package_SO:SOIC-8_3.9x4.9mm_P1.27mm"
+  },
+  {
+    "ref": "U3",
+    "value": "TPS7A2033PDBVR",
+    "footprint": "Package_TO_SOT_SMD:SOT-23-5"
+  }
+]
