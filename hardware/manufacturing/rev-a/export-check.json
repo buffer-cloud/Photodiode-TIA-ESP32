@@ -1,0 +1,35 @@
+{
+  "board_mm": [
+    60,
+    45
+  ],
+  "drills": {
+    "PTH": {
+      "hits": 41,
+      "tools": [
+        "T1C0.300",
+        "T2C1.000"
+      ],
+      "extent_mm": [
+        7.75,
+        -37.0,
+        57.0,
+        -4.0
+      ]
+    },
+    "NPTH": {
+      "hits": 4,
+      "tools": [
+        "T1C3.200"
+      ],
+      "extent_mm": [
+        4.0,
+        -42.0,
+        56.0,
+        -4.0
+      ]
+    }
+  },
+  "gerber_layers": 7,
+  "note": "Excellon absolute origin; negative Y follows KiCad export convention. 25 vias +16 component PTH; 4 NPTH."
+}

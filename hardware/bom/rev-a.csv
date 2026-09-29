@@ -1,0 +1,22 @@
+references,quantity,value_rating,package,manufacturer,mpn,primary_source,assembly_notes
+C1 C2 C9 C11,4,1uF 10% X7R 16V,0603 / 1608 metric,KEMET,C0603C105K4RACTU,https://search.kemet.com/download/specsheet/C0603C105K4RACTU,
+C3,1,1nF 5% C0G 50V,0603 / 1608 metric,KEMET,C0603C102J5GACTU,https://search.kemet.com/download/specsheet/C0603C102J5GACTU,
+C4,1,100pF 5% C0G 50V,0603 / 1608 metric,KEMET,C0603C101J5GACTU,https://search.kemet.com/download/specsheet/C0603C101J5GACTU,
+C5,1,10pF 5% C0G 50V,0603 / 1608 metric,KEMET,C0603C100J5GACTU,https://search.kemet.com/download/specsheet/C0603C100J5GACTU,
+C7 C8 C10 C12 C13,5,100nF 10% X7R 50V,0603 / 1608 metric,KEMET,C0603C104K5RACTU,https://search.kemet.com/download/specsheet/C0603C104K5RACTU,
+C14,1,10nF 10% X7R 50V,0603 / 1608 metric,KEMET,C0603C103K5RACTU,https://search.kemet.com/download/specsheet/C0603C103K5RACTU,
+C6,1,10uF 10% X7R(Murata) 10V,0603 / 1608 metric,Murata,GRM188Z71A106KA73D,https://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM188Z71A106KA73-01A.pdf,DC bias at 1.65V reduces capacitance; see review. Do not substitute X5R.
+R1 R4 R5,3,10k 0.1% 25ppm/C 0.1W,0603 / 1608 metric,YAGEO,RT0603BRD0710KL,https://www.yageogroup.com/component-documentation/download/specsheet/RT0603BRD0710KL,
+R2,1,100k 0.1% 25ppm/C 0.1W,0603 / 1608 metric,YAGEO,RT0603BRD07100KL,https://www.yageogroup.com/component-documentation/download/specsheet/RT0603BRD07100KL,
+R3,1,1M 0.1% 25ppm/C 0.1W,0603 / 1608 metric,YAGEO,RT0603BRD071ML,https://www.yageogroup.com/component-documentation/download/specsheet/RT0603BRD071ML,
+R6 R7,2,3.3k 1% 0.1W,0603 / 1608 metric,YAGEO,RC0603FR-073K3L,https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-073K3L,
+R8,1,1k 1% 0.1W,0603 / 1608 metric,YAGEO,RC0603FR-071KL,https://www.yageogroup.com/component-documentation/download/specsheet/RC0603FR-071KL,
+U1 U2,2,OPA2320 dual,SOIC-8 3.9x4.9mm 1.27mm,Texas Instruments,OPA2320AID,https://www.ti.com/product/OPA2320/part-details/OPA2320AID,Exact orderable D package; OPA2320D is shorthand only
+U3,1,3.3V LDO,SOT-23-5 DBV,Texas Instruments,TPS7A2033PDBVR,https://www.ti.com/product/TPS7A20/part-details/TPS7A2033PDBVR,
+D1,1,BPW34,THT 5.1mm pitch,Vishay,BPW34,https://www.vishay.com/docs/81521/bpw34.pdf,Cathode to rectangular pad1
+D2,1,BAT54S series dual,SOT-23,Vishay,BAT54S-E3-08,https://www.vishay.com/docs/86410/bat54_bat54a_bat54c_bat54s.pdf,Marking L48; not BAT54A/C
+J1,1,1x6 male header,2.54mm THT,Samtec,TSW-106-07-G-S,https://www.samtec.com/products/tsw-106-07-g-s,
+JP1 JP2 JP3 JP4,4,1x2 male header,2.54mm THT,Samtec,TSW-102-07-G-S,https://www.samtec.com/products/tsw-102-07-g-s,
+GAIN_SHUNT ADC_SHUNT,2,Removable shunt,2.54mm 2-pin,Samtec,SNT-100-BK-G,https://www.samtec.com/products/snt-100-bk-g,Two total: one gain only; ADC shunt supplied loose until bench checks pass
+TP1 TP2 TP3 TP4 TP5 TP6,6,Exposed test pad,1.5mm copper,PCB fabrication,NOT PURCHASED,,No fitted testpoint component
+MOUNT1 MOUNT2 MOUNT3 MOUNT4,4,Mounting holes,3.2mm NPTH,PCB fabrication,NOT PURCHASED,,Optional M3 nylon hardware selected for enclosure; excluded from assembly BOM

@@ -1,0 +1,32 @@
+{
+  "source_sha256": {
+    "hardware/kicad/photodiode-tia-esp32.kicad_pcb": "9a08ea896db0c02c5f0669bfa616a27928ba66d8da5f51054e08ab79b735f444",
+    "hardware/kicad/photodiode-tia-esp32.kicad_sch": "231e6786dc01d2dbab01f6b434e7844d501fb9c54aec66ed38087e43fb593f08",
+    "hardware/kicad/photodiode-tia-esp32.kicad_pro": "62995e0b3629cc24f3252bd720f0e201cd11f85f8dc10f38a9c4b556fc97a4c9"
+  },
+  "kicad_cli_version": "9.0.0",
+  "outputs_sha256": {
+    "hardware/bom/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "hardware/bom/rev-a.csv": "5307d2440728d45050a0cc91f35e1845399e725d59154e4c6c2f78e1a30172d3",
+    "hardware/manufacturing/regenerate.py": "9a084613094a31926045bc84b0c0622ff60438892071daecd028aaa4dd006043",
+    "hardware/manufacturing/rev-a/export-check.json": "95bee656ac4325cbccde7bc45ed1bf77bf89825006bd5a9047d84186db42b905",
+    "hardware/manufacturing/rev-a/exports/assembly-top.svg": "cc34eefeb5e246624098740b26d7eb9dfeb6d9e3674c34d79c999d2d7d4de872",
+    "hardware/manufacturing/rev-a/exports/drc.rpt": "8f2f0a4824eca1115dc1e69cfcf515b160f2b28b7e4636a0d2cacb4cf00291a0",
+    "hardware/manufacturing/rev-a/exports/erc.rpt": "9fb4c417c70190daadde703b87d16a85df32199c042ed7ac8c6a04b9e7b063ed",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-B_Cu.gbl": "081169dbf9b0d0080b285719be860ff1f2f47ca21cb333a3fc28ecdd0924b3bc",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-B_Mask.gbs": "8d245193a15fb38230b8a0e1dde3e9e4eadd6f6fbdae44b922da6ef898d4e5ab",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-B_Silkscreen.gbo": "47ed9b7fc39ad72d7fd6c5b65e994bebba1d7c42c181dd94001f97f2f42345e6",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-Edge_Cuts.gm1": "7c0a811b202d485d75984c69941346da5a790e8b305754b711ea7813c1c922c1",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-F_Cu.gtl": "a0badda557da6825b8403d3558bf127d95769704041caad920c3902dcfe95946",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-F_Mask.gts": "1f613972f14a6c49ff70b999e99cfebab94bf12899a356cff7931194a5370290",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-F_Silkscreen.gto": "2cb297a6df60473adc518ad083da83d87c58f27a884b756d0ef26d8851dd2f22",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-NPTH-drl_map.svg": "188fb8099490b5fc2f7702e79828c087304a1e0d0ae00314474e0cfd6482bc7c",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-NPTH.drl": "44e01079ebc6ee39c75605cb7024968d3d7a0420477b4a5e5d3267b47d3fdfc6",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-PTH-drl_map.svg": "8e27224ef7a474eb3dad3185e4cb0671c0f0388c636730187ed66d3f4f19b01e",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-PTH.drl": "27ecc49b2954d18131d89e37f367908a9a8ca626f2a1686f0d2f024450cf8084",
+    "hardware/manufacturing/rev-a/exports/photodiode-tia-esp32-job.gbrjob": "4cb9f52245eee1abe31e55ca2a6083b40005697e593d88e36fbb2e1c5d7e21c9",
+    "hardware/manufacturing/rev-a/fabrication-notes.md": "6db1dbc840a9690e74eb5184be67828f20102e6cd2566230408f28c9c57ecbe2",
+    "hardware/manufacturing/rev-a/footprint-review.md": "45722953b1bc53527f8ea6643cfa33d8bfda408f8b5568e18a889a748f467150",
+    "hardware/manufacturing/rev-a/source-lock.json": "715641229852bf832a50c6bd09026e23b62c0e7e62d9da41a9a68d734dc8519a"
+  }
+}
