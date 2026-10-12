@@ -45,7 +45,7 @@ def run(output: Path, *, seed: int = 20261011, trials: int = 40) -> dict:
 
     csv_path = output / "synthetic_trials.csv"
     with csv_path.open("w", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=list(rows[0]))
+        writer = csv.DictWriter(file, fieldnames=list(rows[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 
