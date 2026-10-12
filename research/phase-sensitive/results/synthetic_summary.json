@@ -1,0 +1,52 @@
+{
+  "provenance": "SYNTHETIC; not measured optical or ESP32 ADC data",
+  "seed": 20261011,
+  "trials_per_amplitude": 40,
+  "sample_rate_hz": 4000,
+  "duration_s": 1,
+  "reference_hz": 137,
+  "ambient_hz": 60,
+  "ambient_peak_mv": 35,
+  "gaussian_noise_sigma_mv": 8,
+  "timestamp_jitter_sigma_us": 5,
+  "digitization_step_mv": 1,
+  "amplitudes_mv": [
+    0,
+    2,
+    4,
+    8,
+    12,
+    20
+  ],
+  "median_absolute_error_mv": {
+    "lockin_mv": [
+      0.2540189157187011,
+      0.13658519589868767,
+      0.10725556046684437,
+      0.10186598312603135,
+      0.12944655430520235,
+      0.10331647406644073
+    ],
+    "fft_bin_mv": [
+      0.2541012274375357,
+      0.1384668175265682,
+      0.10489955170304444,
+      0.09858320272874277,
+      0.12940643448325062,
+      0.10173991265090798
+    ],
+    "raw_half_range_mv": [
+      39.0,
+      37.0,
+      35.5,
+      33.0,
+      31.0,
+      28.024999999999864
+    ]
+  },
+  "null_99th_percentile_threshold_mv": 0.4829633838753085,
+  "detection_rate_at_4mv": 1.0,
+  "baseline_definition": "half of the 5th-to-95th percentile raw voltage range; does not know the modulation frequency",
+  "fft_definition": "known-frequency 137 Hz DFT bin over the same contiguous one-second window",
+  "interpretation_limit": "The FFT is an informed baseline and should agree with the lock-in fit on this nearly uniform contiguous data. No method is claimed novel; hardware trials and stronger controls remain pending."
+}
