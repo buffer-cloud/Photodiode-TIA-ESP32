@@ -46,7 +46,7 @@ Opus escalation was not used. The calculations and simulation agree on every sta
 - PCB parasitics on SUM and the feedback parasitic are covered only by the corner sweep. Layout must keep SUM short and avoid ground pour under RF/CF. An unselected gain branch leaves a floating node on SUM through RF‖CF, adding ≤ ~1 pF (CALCULATED), which is inside the CT sweep.
 - At 1 MΩ, supply noise reaching SUM through the photodiode capacitance isn't simulated. It is CALCULATED to be negligible with TPS7A2033, but it is still a Wi-Fi coupling path to check on the bench.
 - Measurement resolution will be set by the ESP32 ADC (mV level, nonlinear, calibration-dependent). Do not claim any detection limit until one is measured.
-- The 1 ksps option has only −6.3 dB alias rejection at Nyquist (CALCULATED). 4 ksps is the default.
+- The current 1 ksps live-demo default has only −6.3 dB alias rejection at Nyquist (CALCULATED). 4 ksps remains the design target and needs lossless streaming verification.
 - Clamp leakage, overload recovery and startup sequencing need to be checked on the bench. Wait 0.5 s after power-up before baselining.
 - The datasheet figures flagged in [analog-calculation-review.md](analog-calculation-review.md) §5 need to be re-read from the primary PDF tables before ordering.
 

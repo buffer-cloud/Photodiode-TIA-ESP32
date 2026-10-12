@@ -20,7 +20,7 @@
 // ---------------------------------------------------------------------------
 // Acquisition timing
 // ---------------------------------------------------------------------------
-#define SAMPLE_RATE_HZ_DEFAULT   4000u
+#define SAMPLE_RATE_HZ_DEFAULT   1000u   // live demo rate; 4 ksps design target is not yet lossless
 #define SAMPLE_RATE_HZ_MIN       1000u
 #define SAMPLE_RATE_HZ_MAX       8000u
 

@@ -265,6 +265,10 @@ TimingStats getTimingStats() {
   return s;
 }
 
+uint32_t getQueuedBatchCount() {
+  return g_filledQ ? static_cast<uint32_t>(uxQueueMessagesWaiting(g_filledQ)) : 0;
+}
+
 const char *getCalibrationProvenance() { return g_caliProvenance; }
 
 uint32_t rawToMv(uint16_t raw) {

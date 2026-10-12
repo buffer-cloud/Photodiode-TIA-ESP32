@@ -41,6 +41,7 @@ void printStatus() {
   Serial.printf("period mean/min/max (us): %.2f / %.2f / %.2f (n=%lu)\n", ts.meanPeriodUs,
                 ts.minPeriodUs, ts.maxPeriodUs, static_cast<unsigned long>(ts.periodSamples));
   Serial.printf("dropped cumulative: %lu\n", static_cast<unsigned long>(acquisition::getDroppedCumulative()));
+  Serial.printf("queued batches    : %lu\n", static_cast<unsigned long>(acquisition::getQueuedBatchCount()));
   Serial.printf("gain_ohm          : %lu\n", static_cast<unsigned long>(acquisition::getGainOhm()));
   Serial.printf("calibration       : %s\n", acquisition::getCalibrationProvenance());
   Serial.printf("free heap         : %lu bytes\n", static_cast<unsigned long>(ESP.getFreeHeap()));
@@ -49,6 +50,9 @@ void printStatus() {
   Serial.printf("ip                : %s\n", telemetry::getIp().toString().c_str());
   Serial.printf("rssi              : %ld dBm\n", static_cast<long>(telemetry::getRssiDbm()));
   Serial.printf("ws clients        : %lu\n", static_cast<unsigned long>(telemetry::getClientCount()));
+  telemetry::PerformanceStats perf = telemetry::getPerformanceStats();
+  Serial.printf("serialize last/max (us): %lu / %lu\n", static_cast<unsigned long>(perf.lastSerializeUs), static_cast<unsigned long>(perf.maxSerializeUs));
+  Serial.printf("broadcast last/max (us): %lu / %lu\n", static_cast<unsigned long>(perf.lastBroadcastUs), static_cast<unsigned long>(perf.maxBroadcastUs));
   Serial.printf("diag avg N        : %u\n", acquisition::getDiagAveraging());
   Serial.printf("diag dcrm         : %s\n", acquisition::getDiagDcRemove() ? "on" : "off");
   Serial.printf("diag reading (mV) : %.2f\n", acquisition::getDiagReadingMv());

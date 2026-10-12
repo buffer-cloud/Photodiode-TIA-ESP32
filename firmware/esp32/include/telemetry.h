@@ -4,6 +4,13 @@
 
 namespace telemetry {
 
+struct PerformanceStats {
+  uint32_t lastSerializeUs;
+  uint32_t maxSerializeUs;
+  uint32_t lastBroadcastUs;
+  uint32_t maxBroadcastUs;
+};
+
 // Connects Wi-Fi STA, starts the WebSocket server (port WEBSOCKET_PORT,
 // path "/") and spawns the lower-priority streaming task that drains
 // completed batches from acquisition:: and broadcasts them as JSON.
@@ -17,6 +24,7 @@ void setWifiEnabled(bool enabled);
 bool isWifiEnabled();
 
 size_t getClientCount();
+PerformanceStats getPerformanceStats();
 int32_t getRssiDbm();
 IPAddress getIp();
 

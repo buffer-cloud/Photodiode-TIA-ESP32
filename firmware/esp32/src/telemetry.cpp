@@ -13,6 +13,7 @@
 #include <stdarg.h>
 #include <WiFi.h>
 #include <WebSocketsServer.h>
+#include "esp_timer.h"
 
 #include "acquisition.h"
 #include "config.h"
@@ -30,8 +31,17 @@ TaskHandle_t g_telemetryTaskHandle = nullptr;
 std::atomic<bool> g_wifiEnabled{true};
 std::atomic<size_t> g_clientCount{0};
 std::atomic<uint16_t> g_serialPrintRemaining{0};
+std::atomic<uint32_t> g_lastSerializeUs{0};
+std::atomic<uint32_t> g_maxSerializeUs{0};
+std::atomic<uint32_t> g_lastBroadcastUs{0};
+std::atomic<uint32_t> g_maxBroadcastUs{0};
 uint32_t g_sequence = 0;
 char g_jsonBuf[JSON_BUFFER_BYTES];
+
+void updateMaximum(std::atomic<uint32_t> &maximum, uint32_t value) {
+  uint32_t old = maximum.load();
+  while (value > old && !maximum.compare_exchange_weak(old, value)) {}
+}
 
 void onWsEvent(uint8_t num, WStype_t type, uint8_t *payload, size_t length) {
   if (type == WStype_CONNECTED && (length != 1 || payload[0] != '/')) {
@@ -95,8 +105,13 @@ size_t serializeBatch(const Batch &b) {
     append( "%s%lu", i ? "," : "",
                      static_cast<unsigned long>(b.dt_us[i]));
   }
-  append( "],\"calibration\":\"%s\"}",
-                   acquisition::getCalibrationProvenance());
+  append( "],\"calibration\":\"%s\",\"perf_ser_us\":%lu,\"perf_tx_us\":%lu,"
+          "\"queue_batches\":%lu,\"ws_clients\":%lu}",
+                   acquisition::getCalibrationProvenance(),
+                   static_cast<unsigned long>(g_lastSerializeUs.load()),
+                   static_cast<unsigned long>(g_lastBroadcastUs.load()),
+                   static_cast<unsigned long>(acquisition::getQueuedBatchCount()),
+                   static_cast<unsigned long>(g_clientCount.load()));
   return ok ? pos : 0;
 }
 
@@ -135,12 +150,20 @@ void telemetryTaskFn(void * /*arg*/) {
     if (acquisition::takeFilledBatch(&b, 5)) {
       b->seq = g_sequence;
       b->dropped = acquisition::getDroppedCumulative();
+      int64_t serializeStartUs = esp_timer_get_time();
       size_t len = serializeBatch(*b);
+      uint32_t serializeUs = static_cast<uint32_t>(esp_timer_get_time() - serializeStartUs);
+      g_lastSerializeUs = serializeUs;
+      updateMaximum(g_maxSerializeUs, serializeUs);
       if (len && appliedWifi && WiFi.status() == WL_CONNECTED && g_clientCount.load()) {
         // A broadcast attempt is an emitted sequence; TCP receipt is not guaranteed.
         ++g_sequence;
+        int64_t broadcastStartUs = esp_timer_get_time();
         if (!g_webSocket.broadcastTXT(reinterpret_cast<uint8_t *>(g_jsonBuf), len))
           acquisition::recordTransportLoss(b->count);
+        uint32_t broadcastUs = static_cast<uint32_t>(esp_timer_get_time() - broadcastStartUs);
+        g_lastBroadcastUs = broadcastUs;
+        updateMaximum(g_maxBroadcastUs, broadcastUs);
       } else {
         acquisition::recordTransportLoss(b->count);
       }
@@ -167,6 +190,11 @@ void setWifiEnabled(bool enabled) { g_wifiEnabled = enabled; }
 bool isWifiEnabled() { return g_wifiEnabled; }
 
 size_t getClientCount() { return g_clientCount.load(); }
+
+PerformanceStats getPerformanceStats() {
+  return {g_lastSerializeUs.load(), g_maxSerializeUs.load(),
+          g_lastBroadcastUs.load(), g_maxBroadcastUs.load()};
+}
 
 int32_t getRssiDbm() { return WiFi.status() == WL_CONNECTED ? WiFi.RSSI() : 0; }
 

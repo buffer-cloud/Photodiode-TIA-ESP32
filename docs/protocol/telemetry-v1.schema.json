@@ -13,7 +13,11 @@
     "raw": {"type": "array", "minItems": 1, "maxItems": 256, "items": {"type": "integer", "minimum": 0, "maximum": 4095}},
     "mv": {"type": "array", "minItems": 1, "maxItems": 256, "items": {"type": "number", "minimum": 0, "maximum": 5000}},
     "dt_us": {"type": "array", "minItems": 1, "maxItems": 256, "items": {"type": "integer", "minimum": 0}},
-    "calibration": {"type": "string"}
+    "calibration": {"type": "string"},
+    "perf_ser_us": {"type": "integer", "minimum": 0},
+    "perf_tx_us": {"type": "integer", "minimum": 0},
+    "queue_batches": {"type": "integer", "minimum": 0},
+    "ws_clients": {"type": "integer", "minimum": 0}
   },
   "additionalProperties": true,
   "$comment": "Consumer additionally checks equal array lengths, strictly increasing dt_us beginning at zero, finite numbers, gaps, reboot and timing jitter. mv represents ADC-pin voltage, not reconstructed photocurrent. Synthetic examples must be explicitly labeled outside actual measurement folders."

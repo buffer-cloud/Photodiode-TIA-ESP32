@@ -1,0 +1,22 @@
+{
+  "provenance": "PHYSICAL ESP32 STREAM; GPIO34 open; not photodiode/optical data",
+  "conditions": "Opportunistic local Wi-Fi run; other clients and RF environment uncontrolled",
+  "duration_s": 15.003,
+  "packets_received": 1,
+  "samples_received": 256,
+  "observed_sample_delivery_per_s": 17.1,
+  "device_time_span_s": 0.255,
+  "receiver_backlog_growth_s": 14.748,
+  "first_sequence": 0,
+  "last_sequence": 0,
+  "missing_packet_sequences": 0,
+  "device_dropped_samples_during_capture": 0,
+  "configured_sample_rates_hz": [
+    1000.0
+  ],
+  "max_serialize_us": 6834,
+  "max_broadcast_us": 0,
+  "max_queued_batches": 0,
+  "max_connected_clients": 1,
+  "interpretation_limit": "Device dropped counter includes transport and acquisition losses; this run does not isolate causes or establish ADC accuracy."
+}

@@ -9,7 +9,7 @@ This is a design and verification project, not a claim of fabricated or measured
 | Transfer | Increasing light decreases voltage, nominal slope −RF | DC sweep against calibrated current source |
 | Headroom | Normal light signal 0.25–1.65 V; flag ADC outside 0.25–2.40 V | Scope and calibrated ADC sweep |
 | Band | DC–100 Hz useful; approximately 310 Hz combined filter −3 dB | Sine sweep per gain |
-| Sampling | Default 4 ksps; 1–8 ksps configurable, actual times recorded | Timing histogram and queue loss counter |
+| Sampling | Design target 4 ksps; current live-demo default 1 ksps pending lossless 4 ksps streaming; 1–8 ksps configurable, actual times recorded | Timing histogram and queue loss counter |
 | Stability | No sustained oscillation; target <10% small-signal overshoot | Model sweep then oscilloscope check |
 | Digitization | Original ESP32 ADC1 GPIO34, calibration retained | Compare calibrated mV to DMM; raw data saved |
 | Noise | Quantify darkness spectrum with Wi-Fi on/off | Actual data, acquisition settings and processing saved |

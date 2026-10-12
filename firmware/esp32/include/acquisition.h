@@ -43,6 +43,7 @@ uint32_t getGainOhm();
 uint32_t getDroppedCumulative();
 void recordTransportLoss(uint32_t count);
 TimingStats getTimingStats();
+uint32_t getQueuedBatchCount();
 
 // eFuse calibration provenance: "efuse_two_point", "efuse_vref" or "default_vref_1100mV".
 const char *getCalibrationProvenance();

@@ -25,7 +25,12 @@ async def capture(host: str, seconds: float) -> dict:
     sequence_gaps = 0
     first_dropped = last_dropped = None
     first_sequence = last_sequence = None
+    first_device_us = last_device_us = None
     rate_hz = set()
+    perf_serialize_us = []
+    perf_broadcast_us = []
+    queue_batches = []
+    ws_clients = []
     elapsed = 0.0
     async with websockets.connect(f"ws://{host}:81/", open_timeout=8, max_size=1_000_000) as socket:
         started = time.monotonic()
@@ -35,16 +40,24 @@ async def capture(host: str, seconds: float) -> dict:
                 message = await asyncio.wait_for(socket.recv(), timeout=max(0.01, remaining))
             except asyncio.TimeoutError:
                 break
-            batch = parse_batch(message)
+            payload = json.loads(message)
+            batch = parse_batch(payload)
+            for key, values in (("perf_ser_us", perf_serialize_us), ("perf_tx_us", perf_broadcast_us),
+                                ("queue_batches", queue_batches), ("ws_clients", ws_clients)):
+                value = payload.get(key)
+                if isinstance(value, int) and value >= 0:
+                    values.append(value)
             if first_sequence is None:
                 first_sequence = batch.seq
                 first_dropped = batch.dropped
+                first_device_us = batch.t0_us
             elif batch.seq > last_sequence + 1:
                 sequence_gaps += batch.seq - last_sequence - 1
             elif batch.seq <= last_sequence:
                 raise RuntimeError("device sequence reset; repeat capture as a separate epoch")
             last_sequence = batch.seq
             last_dropped = batch.dropped
+            last_device_us = batch.t0_us + batch.dt_us[-1]
             batches += 1
             received_samples += batch.n
             rate_hz.add(batch.fs_hz)
@@ -56,11 +69,17 @@ async def capture(host: str, seconds: float) -> dict:
         "packets_received": batches,
         "samples_received": received_samples,
         "observed_sample_delivery_per_s": round(received_samples / elapsed, 1),
+        "device_time_span_s": round((last_device_us - first_device_us) / 1_000_000, 3) if first_device_us is not None else None,
+        "receiver_backlog_growth_s": round(elapsed - (last_device_us - first_device_us) / 1_000_000, 3) if first_device_us is not None else None,
         "first_sequence": first_sequence,
         "last_sequence": last_sequence,
         "missing_packet_sequences": sequence_gaps,
         "device_dropped_samples_during_capture": (last_dropped - first_dropped) if first_dropped is not None else None,
         "configured_sample_rates_hz": sorted(rate_hz),
+        "max_serialize_us": max(perf_serialize_us, default=None),
+        "max_broadcast_us": max(perf_broadcast_us, default=None),
+        "max_queued_batches": max(queue_batches, default=None),
+        "max_connected_clients": max(ws_clients, default=None),
         "interpretation_limit": "Device dropped counter includes transport and acquisition losses; this run does not isolate causes or establish ADC accuracy.",
     }
 
